@@ -6,9 +6,18 @@ from email.message import EmailMessage
 from imap_tools import MailBox, AND
 from PIL import Image
 import img2pdf
+import img2pdf
+from dotenv import load_dotenv
+
 # --- CONFIGURATION ---
-EMAIL_ADDRESS = ""
-APP_PASSWORD = ("")
+load_dotenv()
+EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+APP_PASSWORD = os.getenv("APP_PASSWORD")
+
+if not EMAIL_ADDRESS or not APP_PASSWORD:
+    print("CRITICAL ERROR: Missing .env file or credentials! Please make sure the .env file is in the same folder.")
+    time.sleep(10)
+    exit()
 
 # SECURITY: Only allow these safe file types. Everything else is ignored.
 ALLOWED_EXTENSIONS = ('.pdf', '.png', '.jpg', '.jpeg', '.txt', '.docx', '.doc')
