@@ -1,29 +1,40 @@
-# Automatic Printer
-
+# Automatic Printer 🖨️
+Ciao 🙂
 Questo programma serve a stampare automaticamente i documenti e le foto inviandoli via email
+
+### Scaricare il programma
+Vai su `<> Code` (in alto a destra in verde) > _Local_ > _Download ZIP_
+
+Dopo averlo estratto, nella stessa cartella devi aggiungere il file `.env` che contiene le credenziali della mail
+
+### Avviare il programma
 Basta che lo avvii quando accendi il computer e poi lo lasci aperto - fai doppio clic sul file chiamato `startPrinter.bat`
 Si aprirà una finestra nera con delle scritte. _IMPORTANTE_: Non chiudere questa finestra - finché la finestra è aperta, la stampante è pronta a ricevere
 
 ### Per mandare un documento da stampare
 
-- Scrivi una email all'indirizzo: stampante.bozza1@gmail.com
-
-- Allega i file che vuoi stampare (puoi lasciare l'oggetto e il testo dell'email anche vuoti).
-
-- Invia l'email
+- Scrivi una email all'indirizzo: `stampante.bozza1@gmail.com`
+- Allega i file che vuoi stampare (puoi lasciare l'oggetto e il testo dell'email vuoti)
 
 ### Cosa fa il programma 
 
-Se mandi dei PDF o Documenti: Li manda direttamente alla stampante
-Se mandi delle Foto (JPG, PNG): Le prende, le ingrandisce per farle stare perfettamente su un foglio A4 senza tagliarle, le unisce e le stampa.
-Chi ha mandato l'email riceverà una risposta automatica di conferma 
+- Se mandi dei PDF o Documenti -> li manda direttamente alla stampante
+- Se mandi delle Foto (JPG, PNG) -> le prende, le ingrandisce per farle stare su un foglio A4 senza tagliarle, le unisce e le stampa
+- (In teoria, chi ha mandato l'email riceverà una risposta automatica di conferma ma forse non funziona)
+- Il programma stampa solo documenti "sicuri" (PDF, Word, TXT) e immagini. Se per riceve file .zip o programmi li ignora automaticamente e li cancella senza aprirli
 
+### Risoluzione dei problemi 
+Se non viene stampato niente
+- controlla di avere il file .env nella stessa cartella in cui ci sono gli altri script
+- la stampante che vuoi usare deve essere quella impostata come predefinita da Windows
+- se il tuo lettore di PDF predefinito è Microsoft Edge, può essere che il programma non funzioni - in quel caso conviene scaricare Adobe e impostare quello come predefinito (tutti i file, anche immagini, vengono convertiti in PDF per la stampa quindi passano da lì)
 
-Per proteggere il computer il programma stamperà solo documenti sicuri (PDF, Word, file di testo) e immagini. Se per sbaglio riceve file strani (come file .zip o programmi), li ignorerà automaticamente e li cancellerà senza aprirli.
+Se ci sono errori quando fai partire il file `.bat`: 
 
-## Risoluzione dei problemi 
-Non stampa nulla: Controlla che la stampante fisica sia accesa, abbia carta e inchiostro, e sia impostata come "Stampante Predefinita" nelle impostazioni di Windows.
+potrebbero essere le dependencies di Python - in teoria vengono installate in automatico, ma nel caso non funzionasse puoi installarle a mano.
 
-La finestra nera si è chiusa per sbaglio: Nessun problema! Vai semplicemente nella cartella e fai di nuovo doppio clic su Start_Printer.bat per riavviare il tutto.
+Dal terminal di Windows (Powershell / CMD), incolla in ordine:
 
-Ricevi un errore strano sull'email di conferma: Assicurati di usare un programma come Adobe Acrobat Reader come lettore PDF predefinito del computer (invece di Microsoft Edge).
+`winget install -e --id Python.Python.3.12`
+
+`pip install imap-tools pillow img2pdf pywin32 python-dotenv`
